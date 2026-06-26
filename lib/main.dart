@@ -1,20 +1,35 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'dart:isolate';
 
-void main() {
-  runApp(const MainApp());
+void main() async {
+  // Read some data.
+  final jsonData = await Isolate.run(_readAndParseJson);
+
+  // Use that data.
+  print('Number of JSON keys: ${jsonData.length}');
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+const String filename = 'with_keys.json';
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
+Future<Map<String, dynamic>> _readAndParseJson() async {
+  final fileData = await File(filename).readAsString();
+  final jsonData = jsonDecode(fileData) as Map<String, dynamic>;
+  return jsonData;
+}
+
+Future<Map<String, dynamic>> _readAndParseJson1() async {
+  final fileData = await File(filename).readAsString();
+  final jsonData = jsonDecode(fileData) as Map<String, dynamic>;
+  return jsonData;
+}
+
+class console {
+  static void log(Object tag, Object value) {
+    print('$tag $value');
   }
+}
+
+extension on String {
+  bool isBlank() => trim().isEmpty;
 }
