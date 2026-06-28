@@ -1,40 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdevscaffold/app/widgets/AppTitleBar.dart';
 
-void main() {
-  runApp(
-    MaterialApp(
-      builder: (context, child) {
-        final top = MediaQuery.of(context).padding.top;
-        return child!;
-      },
-      home: Scaffold(
-        appBar: AppTitleBar(title: const Text('My App')),
-        body: const AppWidget(),
-      ),
-    ),
-  );
-}
+void main() => runApp(const MyApp());
 
-class AppWidget extends StatefulWidget {
-  const AppWidget({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  @override
-  State<AppWidget> createState() => _AppWidgetState();
-}
-
-class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
-    final top = MediaQuery.viewPaddingOf(context).top;
-    return Container(
-      color: Colors.red,
-      width: double.infinity,
-      height: double.infinity,
-      child: Center(
-        child: Text(
-          top.toString(),
-          style: TextStyle(fontSize: 24, color: Colors.white),
+    const title = 'Floating App Bar';
+
+    return MaterialApp(
+      title: title,
+      home: Scaffold(
+        // No app bar provided to Scaffold, only a body with a
+        // CustomScrollView.
+        body: CustomScrollView(
+          slivers: [
+            // Add the app bar to the CustomScrollView.
+            const SliverAppBar(
+              // Provide a standard title.
+              title: Text(title),
+              // Pin the app bar when scrolling
+              pinned: true,
+              // Display a placeholder widget to visualize the shrinking size.
+              flexibleSpace: Placeholder(),
+              // Make the initial height of the SliverAppBar larger than normal.
+              expandedHeight: 200,
+            ),
+            // Next, create a SliverList
+            SliverList.builder(
+              // The builder function returns a ListTile with a title that
+              // displays the index of the current item.
+              itemBuilder: (context, index) =>
+                  ListTile(title: Text('Item #$index')),
+              // Builds 50 ListTiles
+              itemCount: 50,
+            ),
+          ],
         ),
       ),
     );
