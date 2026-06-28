@@ -1,35 +1,42 @@
-import 'dart:convert';
-import 'dart:io';
-import 'dart:isolate';
+import 'package:flutter/material.dart';
+import 'package:flutterdevscaffold/app/widgets/AppTitleBar.dart';
 
-void main() async {
-  // Read some data.
-  final jsonData = await Isolate.run(_readAndParseJson);
-
-  // Use that data.
-  print('Number of JSON keys: ${jsonData.length}');
+void main() {
+  runApp(
+    MaterialApp(
+      builder: (context, child) {
+        final top = MediaQuery.of(context).padding.top;
+        return child!;
+      },
+      home: Scaffold(
+        appBar: AppTitleBar(title: const Text('My App')),
+        body: const AppWidget(),
+      ),
+    ),
+  );
 }
 
-const String filename = 'with_keys.json';
+class AppWidget extends StatefulWidget {
+  const AppWidget({super.key});
 
-Future<Map<String, dynamic>> _readAndParseJson() async {
-  final fileData = await File(filename).readAsString();
-  final jsonData = jsonDecode(fileData) as Map<String, dynamic>;
-  return jsonData;
+  @override
+  State<AppWidget> createState() => _AppWidgetState();
 }
 
-Future<Map<String, dynamic>> _readAndParseJson1() async {
-  final fileData = await File(filename).readAsString();
-  final jsonData = jsonDecode(fileData) as Map<String, dynamic>;
-  return jsonData;
-}
-
-class console {
-  static void log(Object tag, Object value) {
-    print('$tag $value');
+class _AppWidgetState extends State<AppWidget> {
+  @override
+  Widget build(BuildContext context) {
+    final top = MediaQuery.viewPaddingOf(context).top;
+    return Container(
+      color: Colors.red,
+      width: double.infinity,
+      height: double.infinity,
+      child: Center(
+        child: Text(
+          top.toString(),
+          style: TextStyle(fontSize: 24, color: Colors.white),
+        ),
+      ),
+    );
   }
-}
-
-extension on String {
-  bool isBlank() => trim().isEmpty;
 }
