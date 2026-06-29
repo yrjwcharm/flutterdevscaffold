@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdevscaffold/app/network/token_manager.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await TokenManager.init();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
