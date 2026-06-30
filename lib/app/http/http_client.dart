@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:flutterdevscaffold/app/network/api_exception.dart';
-import 'package:flutterdevscaffold/app/network/api_response.dart';
-import 'package:flutterdevscaffold/app/network/env_config.dart';
-import 'package:flutterdevscaffold/app/network/interceptors/auth_interceptor.dart';
-import 'package:flutterdevscaffold/app/network/interceptors/refresh_token_interceptor.dart';
-import 'package:flutterdevscaffold/app/network/interceptors/retry_interceptor.dart';
-import 'package:flutterdevscaffold/app/network/request_queue.dart';
+import 'package:flutterdevscaffold/app/http/api_exception.dart';
+import 'package:flutterdevscaffold/app/http/api_response.dart';
+import 'package:flutterdevscaffold/app/http/env_config.dart';
+import 'package:flutterdevscaffold/app/http/interceptors/auth_interceptor.dart';
+import 'package:flutterdevscaffold/app/http/interceptors/refresh_token_interceptor.dart';
+import 'package:flutterdevscaffold/app/http/interceptors/retry_interceptor.dart';
+import 'package:flutterdevscaffold/app/http/request_queue.dart';
 
 class HttpClient {
   static final HttpClient _instance = HttpClient._internal();

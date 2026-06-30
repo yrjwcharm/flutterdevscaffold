@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutterdevscaffold/app/network/token_manager.dart';
+import 'package:flutterdevscaffold/app/http/token_manager.dart';
 
 class AuthInterceptor extends Interceptor {
   @override

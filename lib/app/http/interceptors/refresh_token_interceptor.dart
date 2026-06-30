@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutterdevscaffold/app/network/env_config.dart';
-import 'package:flutterdevscaffold/app/network/token_manager.dart';
+import 'package:flutterdevscaffold/app/http/env_config.dart';
+import 'package:flutterdevscaffold/app/http/token_manager.dart';
 
 class RefreshTokenInterceptor extends Interceptor {
   final Dio dio;
