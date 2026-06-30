@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutterdevscaffold/app/common/app_theme.dart';
 import 'package:flutterdevscaffold/app/http/token_manager.dart';
@@ -24,7 +25,7 @@ class MainPage extends ConsumerWidget {
         ],
       ),
       bottomNavigationBar: NavigationBar(
-        height: 68,
+        height: 68.h,
         selectedIndex: tabIndex,
         onDestinationSelected: (index) {
           ref.read(mainTabProvider.notifier).state = index;
@@ -60,7 +61,7 @@ class _PromptHomeView extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           SliverPadding(
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 12),
+            padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 12.h),
             sliver: SliverToBoxAdapter(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +78,7 @@ class _PromptHomeView extends StatelessWidget {
             ),
           ),
           SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
             sliver: SliverList.list(
               children: const [
                 _PromptCard(
@@ -117,7 +118,7 @@ class _SkillHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: ListView(
-        padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+        padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 24.h),
         children: const [
           _SimpleTitle(title: 'Skill 管理'),
           SizedBox(height: 18),
@@ -156,7 +157,7 @@ class _ProfileHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: ListView(
-        padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+        padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 24.h),
         children: [
           const _SimpleTitle(title: '我的'),
           const SizedBox(height: 18),
@@ -190,26 +191,26 @@ class _HomeHeader extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 44,
-          height: 44,
+          width: 44.w,
+          height: 44.w,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
             gradient: const LinearGradient(
               colors: [Color(0xFF7D8BFF), AppColors.primary],
             ),
           ),
-          child: const Center(
+          child: Center(
             child: Text(
               'P',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 26,
+                fontSize: 26.sp,
                 fontWeight: FontWeight.w900,
               ),
             ),
           ),
         ),
-        const SizedBox(width: 12),
+        SizedBox(width: 12.w),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -241,17 +242,17 @@ class _SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 48,
+      height: 48.h,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         border: Border.all(color: AppColors.line),
       ),
       child: Row(
         children: [
-          const SizedBox(width: 14),
+          SizedBox(width: 14.w),
           const Icon(Icons.search_rounded, color: AppColors.mutedText),
-          const SizedBox(width: 10),
+          SizedBox(width: 10.w),
           Expanded(
             child: Text(
               hint,
@@ -272,24 +273,24 @@ class _QuickStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: const [
-        Expanded(
+      children: [
+        const Expanded(
           child: _StatTile(
             label: '我的 Prompt',
             value: '128',
             icon: Icons.article_rounded,
           ),
         ),
-        SizedBox(width: 10),
-        Expanded(
+        SizedBox(width: 10.w),
+        const Expanded(
           child: _StatTile(
             label: 'Skill',
             value: '18',
             icon: Icons.extension_rounded,
           ),
         ),
-        SizedBox(width: 10),
-        Expanded(
+        SizedBox(width: 10.w),
+        const Expanded(
           child: _StatTile(
             label: '本周调用',
             value: '4.2k',
@@ -315,21 +316,21 @@ class _StatTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         border: Border.all(color: AppColors.line),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, size: 20, color: AppColors.primary),
-          const SizedBox(height: 12),
+          Icon(icon, size: 20.sp, color: AppColors.primary),
+          SizedBox(height: 12.h),
           Text(
             value,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                 ),
           ),
           const SizedBox(height: 2),
@@ -375,25 +376,25 @@ class _PromptCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         border: Border.all(color: AppColors.line),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: AppColors.primary.withValues(alpha: 0.10),
-              borderRadius: BorderRadius.circular(8),
+          width: 44.w,
+          height: 44.w,
+          decoration: BoxDecoration(
+            color: AppColors.primary.withValues(alpha: 0.10),
+              borderRadius: BorderRadius.circular(8.r),
             ),
             child: Icon(icon, color: AppColors.primary),
           ),
-          const SizedBox(width: 14),
+          SizedBox(width: 14.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -428,16 +429,16 @@ class _Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
       decoration: BoxDecoration(
         color: AppColors.primary.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(6.r),
       ),
       child: Text(
         label,
-        style: const TextStyle(
+        style: TextStyle(
           color: AppColors.primary,
-          fontSize: 11,
+          fontSize: 11.sp,
           fontWeight: FontWeight.w700,
         ),
       ),
@@ -472,24 +473,24 @@ class _SkillTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         border: Border.all(color: AppColors.line),
       ),
       child: Row(
         children: [
           Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: AppColors.accent.withValues(alpha: 0.14),
-              borderRadius: BorderRadius.circular(8),
+          width: 44.w,
+          height: 44.w,
+          decoration: BoxDecoration(
+            color: AppColors.accent.withValues(alpha: 0.14),
+              borderRadius: BorderRadius.circular(8.r),
             ),
             child: Icon(icon, color: AppColors.accent),
           ),
-          const SizedBox(width: 14),
+          SizedBox(width: 14.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -513,23 +514,23 @@ class _ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(18),
+      padding: EdgeInsets.all(18.r),
       decoration: BoxDecoration(
         color: AppColors.ink,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
       ),
       child: Row(
         children: [
           Container(
-            width: 54,
-            height: 54,
+            width: 54.w,
+            height: 54.w,
             decoration: BoxDecoration(
               color: Colors.white.withValues(alpha: 0.16),
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(14.r),
             ),
             child: const Icon(Icons.person_rounded, color: Colors.white),
           ),
-          const SizedBox(width: 14),
+          SizedBox(width: 14.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -565,17 +566,17 @@ class _SettingTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+      margin: EdgeInsets.only(bottom: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         border: Border.all(color: AppColors.line),
       ),
       child: Row(
         children: [
           Icon(icon, color: AppColors.primary),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.w),
           Expanded(
             child: Text(title, style: Theme.of(context).textTheme.titleMedium),
           ),

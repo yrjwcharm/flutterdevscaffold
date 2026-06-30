@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutterdevscaffold/app/common/app_theme.dart';
 import 'package:flutterdevscaffold/app/router/app_router.dart';
@@ -45,11 +46,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         child: SafeArea(
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 430),
+              constraints: BoxConstraints(maxWidth: 430.w),
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   return SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: EdgeInsets.symmetric(horizontal: 24.w),
                     child: ConstrainedBox(
                       constraints: BoxConstraints(
                         minHeight: constraints.maxHeight,
@@ -104,17 +105,17 @@ class _AuthTopBar extends ConsumerWidget {
     final viewModel = ref.read(loginViewModelProvider.notifier);
 
     return SizedBox(
-      height: 54,
+      height: 54.h,
       child: Row(
         children: [
           if (stage == LoginStage.phone || stage == LoginStage.code)
             IconButton(
               tooltip: '返回',
               onPressed: viewModel.back,
-              icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+              icon: Icon(Icons.arrow_back_ios_new_rounded, size: 20.sp),
             )
           else
-            const SizedBox(width: 48),
+            SizedBox(width: 48.w),
           const Spacer(),
           if (stage == LoginStage.method)
             IconButton(
@@ -123,7 +124,7 @@ class _AuthTopBar extends ConsumerWidget {
               icon: const Icon(Icons.close_rounded),
             )
           else
-            const SizedBox(width: 48),
+            SizedBox(width: 48.w),
         ],
       ),
     );
@@ -167,16 +168,12 @@ class _MethodStage extends ConsumerWidget {
           icon: Icons.lock_outline_rounded,
           label: '密码登录',
           onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('密码登录入口待接入')),
-            );
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(const SnackBar(content: Text('密码登录入口待接入')));
           },
         ),
         const SizedBox(height: 28),
-        const _DividerLabel(label: '其他登录方式'),
-        const SizedBox(height: 18),
-        const _SocialLoginRow(),
-        const SizedBox(height: 34),
         _AgreementRow(value: state.isAgreementAccepted),
         const SizedBox(height: 24),
       ],
@@ -214,8 +211,8 @@ class _PhoneStage extends ConsumerWidget {
           label: state.countdown > 0
               ? '${state.countdown}s 后重新获取'
               : state.isSendingCode
-                  ? '获取中...'
-                  : '获取验证码',
+              ? '获取中...'
+              : '获取验证码',
           isLoading: state.isSendingCode,
           onPressed: state.isSendingCode || state.countdown > 0
               ? null
@@ -261,9 +258,7 @@ class _CodeStage extends ConsumerWidget {
           child: TextButton(
             onPressed: state.countdown == 0 ? viewModel.sendCode : null,
             child: Text(
-              state.countdown > 0
-                  ? '${state.countdown}s 后重新获取'
-                  : '重新获取验证码',
+              state.countdown > 0 ? '${state.countdown}s 后重新获取' : '重新获取验证码',
             ),
           ),
         ),
@@ -271,9 +266,9 @@ class _CodeStage extends ConsumerWidget {
           const SizedBox(height: 6),
           Text(
             '验证码错误，请重新输入',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.danger,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: AppColors.danger),
           ),
         ],
         const SizedBox(height: 28),
@@ -332,7 +327,7 @@ class _PromptHubIllustration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 170,
+      height: 170.h,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -340,31 +335,31 @@ class _PromptHubIllustration extends StatelessWidget {
           const _LayerPlate(width: 128, height: 64, top: 48),
           const _LayerPlate(width: 92, height: 50, top: 26),
           Positioned(
-            top: 36,
+            top: 36.h,
             child: Transform.rotate(
               angle: -0.25 * math.pi,
               child: Container(
-                width: 76,
-                height: 76,
+                width: 76.w,
+                height: 76.w,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(18.r),
                   gradient: const LinearGradient(
                     colors: [Color(0xFF8D99FF), AppColors.primary],
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: AppColors.primary.withValues(alpha: 0.28),
-                      blurRadius: 28,
-                      offset: const Offset(0, 16),
+                      blurRadius: 28.r,
+                      offset: Offset(0, 16.h),
                     ),
                   ],
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
                     'P',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 36,
+                      fontSize: 36.sp,
                       fontWeight: FontWeight.w900,
                     ),
                   ),
@@ -392,21 +387,21 @@ class _LayerPlate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: top,
+      top: top.h,
       child: Transform.rotate(
         angle: -0.25 * math.pi,
         child: Container(
-          width: width,
-          height: height,
+          width: width.w,
+          height: height.h,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(18.r),
             color: const Color(0xFFE5E8FF),
             border: Border.all(color: Colors.white),
             boxShadow: [
               BoxShadow(
                 color: AppColors.primary.withValues(alpha: 0.14),
-                blurRadius: 20,
-                offset: const Offset(0, 12),
+                blurRadius: 20.r,
+                offset: Offset(0, 12.h),
               ),
             ],
           ),
@@ -460,22 +455,26 @@ class _PhoneNumberFieldState extends State<_PhoneNumberField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 52,
+      height: 52.h,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         border: Border.all(color: AppColors.line),
       ),
       child: Row(
         children: [
-          const SizedBox(width: 14),
-          const Text(
+          SizedBox(width: 14.w),
+          Text(
             '+86',
-            style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              color: AppColors.ink,
+              fontSize: 14.sp,
+            ),
           ),
           const Icon(Icons.arrow_drop_down_rounded, color: AppColors.ink),
-          Container(width: 1, height: 20, color: AppColors.line),
-          const SizedBox(width: 12),
+          Container(width: 1.w, height: 20.h, color: AppColors.line),
+          SizedBox(width: 12.w),
           Expanded(
             child: TextField(
               controller: _controller,
@@ -496,7 +495,7 @@ class _PhoneNumberFieldState extends State<_PhoneNumberField> {
               onChanged: widget.onChanged,
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.w),
         ],
       ),
     );
@@ -559,7 +558,7 @@ class _OtpCodeInputState extends State<_OtpCodeInput> {
               final active = index == widget.value.length && !hasChar;
               return Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(right: index == 5 ? 0 : 8),
+                  padding: EdgeInsets.only(right: index == 5 ? 0 : 8.w),
                   child: _OtpBox(
                     char: hasChar ? widget.value[index] : '',
                     active: active,
@@ -616,22 +615,22 @@ class _OtpBox extends StatelessWidget {
     final borderColor = hasError
         ? AppColors.danger
         : active
-            ? AppColors.primary
-            : AppColors.line;
+        ? AppColors.primary
+        : AppColors.line;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 160),
-      height: 52,
+      height: 52.h,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         border: Border.all(color: borderColor, width: active ? 1.4 : 1),
       ),
       child: Text(
         char,
-        style: const TextStyle(
-          fontSize: 20,
+        style: TextStyle(
+          fontSize: 20.sp,
           fontWeight: FontWeight.w800,
           color: AppColors.ink,
         ),
@@ -658,10 +657,10 @@ class _PrimaryActionButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: isLoading ? null : onPressed,
       child: isLoading
-          ? const SizedBox(
-              width: 18,
-              height: 18,
-              child: CircularProgressIndicator(
+          ? SizedBox(
+              width: 18.w,
+              height: 18.w,
+              child: const CircularProgressIndicator(
                 strokeWidth: 2,
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               ),
@@ -671,8 +670,8 @@ class _PrimaryActionButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 if (icon != null) ...[
-                  Icon(icon, size: 18),
-                  const SizedBox(width: 8),
+                  Icon(icon, size: 18.sp),
+                  SizedBox(width: 8.w),
                 ],
                 Text(label),
               ],
@@ -700,10 +699,7 @@ class _SecondaryActionButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (icon != null) ...[
-            Icon(icon, size: 18),
-            const SizedBox(width: 8),
-          ],
+          if (icon != null) ...[Icon(icon, size: 18.sp), SizedBox(width: 8.w)],
           Text(label),
         ],
       ),
@@ -721,28 +717,28 @@ class _AgreementRow extends ConsumerWidget {
     final viewModel = ref.read(loginViewModelProvider.notifier);
 
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          width: 28,
-          height: 28,
+          width: 28.w,
+          height: 28.w,
           child: Checkbox(
             value: value,
             onChanged: viewModel.toggleAgreement,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             visualDensity: VisualDensity.compact,
-            shape: const CircleBorder(),
           ),
         ),
-        const SizedBox(width: 8),
+        SizedBox(width: 8.w),
         Expanded(
           child: GestureDetector(
             onTap: () => viewModel.toggleAgreement(!value),
             child: RichText(
               text: TextSpan(
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.secondaryText,
-                      height: 1.55,
-                    ),
+                  color: AppColors.secondaryText,
+                  height: 1.55,
+                ),
                 children: const [
                   TextSpan(text: '已阅读并同意 '),
                   TextSpan(
@@ -764,41 +760,21 @@ class _AgreementRow extends ConsumerWidget {
   }
 }
 
-class _DividerLabel extends StatelessWidget {
-  const _DividerLabel({required this.label});
-
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Expanded(child: Divider(color: AppColors.line)),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Text(label, style: Theme.of(context).textTheme.bodySmall),
-        ),
-        const Expanded(child: Divider(color: AppColors.line)),
-      ],
-    );
-  }
-}
-
 class _SocialLoginRow extends StatelessWidget {
   const _SocialLoginRow();
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _SocialButton(
+        const _SocialButton(
           icon: Icons.chat_bubble_rounded,
           color: Color(0xFF2CCB62),
           tooltip: '微信登录',
         ),
-        SizedBox(width: 26),
-        _SocialButton(
+        SizedBox(width: 26.w),
+        const _SocialButton(
           icon: Icons.apple,
           color: Colors.black,
           tooltip: 'Apple 登录',
@@ -824,20 +800,20 @@ class _SocialButton extends StatelessWidget {
     return Tooltip(
       message: tooltip,
       child: Container(
-        width: 44,
-        height: 44,
+        width: 44.w,
+        height: 44.w,
         decoration: BoxDecoration(
           color: color,
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
               color: color.withValues(alpha: 0.22),
-              blurRadius: 16,
-              offset: const Offset(0, 8),
+              blurRadius: 16.r,
+              offset: Offset(0, 8.h),
             ),
           ],
         ),
-        child: Icon(icon, color: Colors.white, size: 22),
+        child: Icon(icon, color: Colors.white, size: 22.sp),
       ),
     );
   }
@@ -850,8 +826,8 @@ class _SuccessBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 92,
-        height: 92,
+        width: 92.w,
+        height: 92.w,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           gradient: const LinearGradient(
@@ -862,12 +838,12 @@ class _SuccessBadge extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: AppColors.primary.withValues(alpha: 0.30),
-              blurRadius: 30,
-              offset: const Offset(0, 16),
+              blurRadius: 30.r,
+              offset: Offset(0, 16.h),
             ),
           ],
         ),
-        child: const Icon(Icons.check_rounded, color: Colors.white, size: 52),
+        child: Icon(Icons.check_rounded, color: Colors.white, size: 52.sp),
       ),
     );
   }

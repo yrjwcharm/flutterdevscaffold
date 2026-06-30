@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutterdevscaffold/app/common/app_screen.dart';
 import 'package:flutterdevscaffold/app/common/app_theme.dart';
 import 'package:flutterdevscaffold/app/http/token_manager.dart';
 import 'package:flutterdevscaffold/app/router/app_router.dart';
@@ -17,11 +19,18 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
 
-    return MaterialApp.router(
-      title: 'PromptHub',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.light,
-      routerConfig: router,
+    return ScreenUtilInit(
+      designSize: AppScreen.designSize,
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp.router(
+          title: 'PromptHub',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.light,
+          routerConfig: router,
+        );
+      },
     );
   }
 }

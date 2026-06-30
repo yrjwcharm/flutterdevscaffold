@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppColors {
   AppColors._();
@@ -41,44 +42,44 @@ class AppTheme {
         centerTitle: true,
         surfaceTintColor: Colors.transparent,
       ),
-      textTheme: const TextTheme(
+      textTheme: TextTheme(
         headlineLarge: TextStyle(
-          fontSize: 30,
+          fontSize: 30.sp,
           height: 1.2,
           fontWeight: FontWeight.w800,
           color: AppColors.ink,
         ),
         headlineMedium: TextStyle(
-          fontSize: 24,
+          fontSize: 24.sp,
           height: 1.25,
           fontWeight: FontWeight.w800,
           color: AppColors.ink,
         ),
         titleLarge: TextStyle(
-          fontSize: 20,
+          fontSize: 20.sp,
           height: 1.3,
           fontWeight: FontWeight.w800,
           color: AppColors.ink,
         ),
         titleMedium: TextStyle(
-          fontSize: 16,
+          fontSize: 16.sp,
           height: 1.4,
           fontWeight: FontWeight.w700,
           color: AppColors.ink,
         ),
         bodyLarge: TextStyle(
-          fontSize: 15,
+          fontSize: 15.sp,
           height: 1.5,
           fontWeight: FontWeight.w500,
           color: AppColors.ink,
         ),
         bodyMedium: TextStyle(
-          fontSize: 13,
+          fontSize: 13.sp,
           height: 1.45,
           color: AppColors.secondaryText,
         ),
         labelLarge: TextStyle(
-          fontSize: 15,
+          fontSize: 15.sp,
           height: 1.2,
           fontWeight: FontWeight.w700,
         ),
@@ -86,22 +87,22 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Colors.white,
-        hintStyle: const TextStyle(color: AppColors.mutedText, fontSize: 14),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        hintStyle: TextStyle(color: AppColors.mutedText, fontSize: 14.sp),
+        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: const BorderSide(color: AppColors.line),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: const BorderSide(color: AppColors.line),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: const BorderSide(color: AppColors.primary, width: 1.2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: const BorderSide(color: AppColors.danger),
         ),
       ),
@@ -112,18 +113,18 @@ class AppTheme {
           foregroundColor: Colors.white,
           disabledBackgroundColor: const Color(0xFFC9CEEA),
           disabledForegroundColor: Colors.white,
-          minimumSize: const Size.fromHeight(48),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+          minimumSize: Size.fromHeight(48.h),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
+          textStyle: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w700),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.ink,
-          minimumSize: const Size.fromHeight(48),
+          minimumSize: Size.fromHeight(48.h),
           side: const BorderSide(color: AppColors.line),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
+          textStyle: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w700),
         ),
       ),
       cardTheme: CardThemeData(
@@ -131,14 +132,14 @@ class AppTheme {
         elevation: 0,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           side: const BorderSide(color: AppColors.line),
         ),
       ),
       snackBarTheme: SnackBarThemeData(
         backgroundColor: AppColors.ink,
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
       ),
     );
   }

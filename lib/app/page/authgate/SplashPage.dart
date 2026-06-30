@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutterdevscaffold/app/common/app_theme.dart';
 import 'package:flutterdevscaffold/app/http/token_manager.dart';
@@ -46,19 +47,19 @@ class _SplashPageState extends State<SplashPage> {
         child: SafeArea(
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 430),
+              constraints: BoxConstraints(maxWidth: 430.w),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
+                padding: EdgeInsets.symmetric(horizontal: 32.w),
                 child: Column(
                   children: [
                     const Spacer(flex: 2),
                     const _PromptLogo(size: 72),
-                    const SizedBox(height: 18),
+                    SizedBox(height: 18.h),
                     Text(
                       'PromptHub',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
                     Text(
                       '让 AI 更懂你，让创意更高效',
                       style: Theme.of(context).textTheme.bodyMedium,
@@ -67,14 +68,14 @@ class _SplashPageState extends State<SplashPage> {
                     const _FloatingPromptCards(),
                     const Spacer(flex: 2),
                     const _LoadingPill(),
-                    const SizedBox(height: 28),
+                    SizedBox(height: 28.h),
                     Text(
                       '© 2024 PromptHub. All rights reserved.',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.mutedText,
-                          ),
+                        color: AppColors.mutedText,
+                      ),
                     ),
-                    const SizedBox(height: 22),
+                    SizedBox(height: 22.h),
                   ],
                 ),
               ),
@@ -94,10 +95,10 @@ class _PromptLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: size,
-      height: size,
+      width: size.w,
+      height: size.w,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(18.r),
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -106,17 +107,17 @@ class _PromptLogo extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: AppColors.primary.withValues(alpha: 0.28),
-            blurRadius: 28,
-            offset: const Offset(0, 14),
+            blurRadius: 28.r,
+            offset: Offset(0, 14.h),
           ),
         ],
       ),
-      child: const Center(
+      child: Center(
         child: Text(
           'P',
           style: TextStyle(
             color: Colors.white,
-            fontSize: 42,
+            fontSize: 42.sp,
             fontWeight: FontWeight.w900,
           ),
         ),
@@ -131,23 +132,23 @@ class _FloatingPromptCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 170,
+      height: 170.h,
       child: Stack(
         alignment: Alignment.center,
-        children: const [
+        children: [
           Positioned(
-            left: 10,
-            bottom: 32,
-            child: _PromptTile(angle: -0.27, label: 'Prompt'),
+            left: 10.w,
+            bottom: 32.h,
+            child: const _PromptTile(angle: -0.27, label: 'Prompt'),
           ),
           Positioned(
-            right: 18,
-            bottom: 14,
-            child: _PromptTile(angle: 0.28, label: 'Workflow'),
+            right: 18.w,
+            bottom: 14.h,
+            child: const _PromptTile(angle: 0.28, label: 'Workflow'),
           ),
           Positioned(
-            top: 22,
-            child: _PromptTile(angle: 0.08, label: 'Skill'),
+            top: 22.h,
+            child: const _PromptTile(angle: 0.08, label: 'Skill'),
           ),
         ],
       ),
@@ -166,18 +167,18 @@ class _PromptTile extends StatelessWidget {
     return Transform.rotate(
       angle: angle * math.pi,
       child: Container(
-        width: 118,
-        height: 82,
-        padding: const EdgeInsets.all(14),
+        width: 118.w,
+        height: 82.h,
+        padding: EdgeInsets.all(14.r),
         decoration: BoxDecoration(
           color: Colors.white.withValues(alpha: 0.72),
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(14.r),
           border: Border.all(color: Colors.white),
           boxShadow: [
             BoxShadow(
               color: AppColors.primary.withValues(alpha: 0.18),
-              blurRadius: 26,
-              offset: const Offset(0, 14),
+              blurRadius: 26.r,
+              offset: Offset(0, 14.h),
             ),
           ],
         ),
@@ -193,11 +194,11 @@ class _PromptTile extends StatelessWidget {
             ),
             const Spacer(),
             Container(
-              width: 26,
-              height: 26,
+              width: 26.w,
+              height: 26.w,
               decoration: BoxDecoration(
                 color: AppColors.primary.withValues(alpha: 0.14),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
               ),
               child: const Icon(
                 Icons.auto_awesome_rounded,
@@ -218,19 +219,19 @@ class _LoadingPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 72,
-      height: 5,
+      width: 72.w,
+      height: 5.h,
       alignment: Alignment.centerLeft,
       decoration: BoxDecoration(
         color: AppColors.line,
-        borderRadius: BorderRadius.circular(999),
+        borderRadius: BorderRadius.circular(999.r),
       ),
       child: FractionallySizedBox(
         widthFactor: 0.48,
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.primary,
-            borderRadius: BorderRadius.circular(999),
+            borderRadius: BorderRadius.circular(999.r),
           ),
         ),
       ),
